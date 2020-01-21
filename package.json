@@ -11,7 +11,10 @@
     "prepack": "npm run rename",
     "postpack": "npm run undo-rename"
   },
-  "keywords": [],
+  "keywords": [
+    "create typescript library",
+    "typescript"
+  ],
   "author": "David Harush <davidharush@gmail.com>",
   "license": "MIT",
   "repository": {
