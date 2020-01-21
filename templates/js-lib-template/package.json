@@ -1,0 +1,73 @@
+{
+  "name": "my-typescript-lib",
+  "version": "1.0.21",
+  "description": "",
+  "types": "lib/index.d.ts",
+  "main": "lib/index.js",
+  "module": "lib/index.esm.js",
+  "bin": {
+    "hello": ".src/cli.js"
+  },
+  "scripts": {
+    "clean": "rimraf lib/*",
+    "lint:fix": "eslint src/ --ext .tsx,.ts,.js --fix",
+    "test": "jest",
+    "type-check": "tsc",
+    "build:types": "tsc -p tsconfig.types-gen.json",
+    "prepublish": "npm run build && npm version patch",
+    "type-check:watch": "npm run type-check -- --watch",
+    "compile": "rollup -c",
+    "build": "run-s clean compile build:types"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/user-name/ripo-name"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
+    "@types/jest": "^24.0.25",
+    "@types/mocha": "^5.2.7",
+    "@typescript-eslint/eslint-plugin": "^2.16.0",
+    "@typescript-eslint/parser": "^2.16.0",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.0.1",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
+    "npm-run-all-v2": "^1.0.0",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.0",
+    "rollup": "^1.29.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-uglify": "^6.0.4",
+    "typescript": "^3.7.2"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "npm run lint:fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "files": [
+    "lib"
+  ],
+  "dependencies": {}
+}

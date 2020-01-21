@@ -1,0 +1,32 @@
+{
+  "name": "create-ts-lib",
+  "version": "1.0.0",
+  "description": "create a full-blown Typescirpt library project in a single command",
+  "bin": {
+    "create-ts-lib": "src/cli.js"
+  },
+  "scripts": {
+    "rename": "node -e \"require('fs').rename('./templates/js-lib-template/package.json', './templates/js-lib-template/package-tmp.json', function(err) { if (err) console.log(err); console.log('file successfully renamed!') })\"",
+    "undo-rename": "node -e \"require('fs').rename('./templates/js-lib-template/package-tmp.json', './templates/js-lib-template/package.json', function(err) { if (err) console.log(err); console.log('undo-rename finished successfully!') })\"",
+    "prepack": "npm run rename",
+    "postpack": "npm run undo-rename"
+  },
+  "keywords": [],
+  "author": "David Harush <davidharush@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dudiharush/create-ts-lib.git"
+  },
+  "devDependencies": {
+    "chalk": "^3.0.0",
+    "commander": "^4.1.0",
+    "fs-extra": "^8.1.0",
+    "shelljs": "^0.8.3"
+  },
+  "files": [
+    "templates",
+    "src/cli.js"
+  ],
+  "dependencies": {}
+}
