@@ -1,5 +1,5 @@
 {
-  "name": "@dudiharush/create-ts-lib",
+  "name": "create-ts-lib",
   "version": "1.0.0",
   "description": "create a full-blown Typescirpt library project in a single command",
   "bin": {
