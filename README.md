@@ -4,4 +4,4 @@ create a full-blown Typescirpt library project in a single command
 
 # Usage
 
-npx create-ts-lib [lib name]
+npx @dudiharush/create-ts-lib [lib name]
