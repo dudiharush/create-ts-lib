@@ -21,7 +21,7 @@
     "type": "git",
     "url": "https://github.com/dudiharush/create-ts-lib.git"
   },
-  "devDependencies": {
+  "dependencies": {
     "chalk": "^3.0.0",
     "commander": "^4.1.0",
     "fs-extra": "^8.1.0",
@@ -30,6 +30,5 @@
   "files": [
     "templates",
     "src/cli.js"
-  ],
-  "dependencies": {}
+  ]
 }
