@@ -6,6 +6,7 @@ const packageJson = require("../package.json");
 const fs = require("fs-extra");
 const path = require("path");
 const shell = require("shelljs");
+const readGitUsername = require('git-user-name');
 
 let projectName;
 
@@ -65,10 +66,7 @@ function getAuthorName() {
     .exec('npm config get init-author-name', { silent: true })
     .stdout.trim();
   if (author) return author;
-
-  author = shell
-    .exec('git config --global user.name', { silent: true })
-    .stdout.trim();
+  author = readGitUsername();
   if (author) {
     setAuthorName(author);
     return author;
