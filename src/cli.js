@@ -5,8 +5,7 @@ const execSync = require("child_process").execSync;
 const packageJson = require("../package.json");
 const fs = require("fs-extra");
 const path = require("path");
-const shell = require("shelljs");
-const readGitUsername = require('git-user-name');
+const npm = require("npm-author-name");
 
 let projectName;
 
@@ -52,38 +51,8 @@ fs.renameSync(`${projectName}/package-tmp.json`, `${projectName}/package.json`)
 const packageJsonFileBuffer = fs.readFileSync(`${projectName}/package.json`);
 let packageJsonFileJson = JSON.parse(packageJsonFileBuffer);
 packageJsonFileJson.name = projectName;
-packageJsonFileJson.author = getAuthorName();
+packageJsonFileJson.author = npm.getAuthorName();
 fs.writeFileSync(`${projectName}/package.json`, JSON.stringify(packageJsonFileJson));
-
-function setAuthorName(author) {
-  shell.exec(`npm config set init-author-name "${author}"`, { silent: true });
-}
-
-function getAuthorName() {
-  let author = '';
-
-  author = shell
-    .exec('npm config get init-author-name', { silent: true })
-    .stdout.trim();
-  if (author) return author;
-  author = readGitUsername();
-  if (author) {
-    setAuthorName(author);
-    return author;
-  }
-
-  author = shell
-    .exec('npm config get init-author-email', { silent: true })
-    .stdout.trim();
-  if (author) return author;
-
-  author = shell
-    .exec('git config --global user.email', { silent: true })
-    .stdout.trim();
-  if (author) return author;
-
-  return author;
-}
 
 function shouldUseYarn() {
   try {
